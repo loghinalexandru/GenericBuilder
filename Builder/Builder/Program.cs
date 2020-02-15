@@ -7,9 +7,9 @@ namespace Builder
         static void Main(string[] args)
         {
             var ceva = Person.Builder
-                .WithProperty("name", "ionel")
-                .WithProperty("lastname", "popescu")
-                .WithProperty("address", "Sf. Iorga")
+                .WithProperty(p => p.LastName = "Popescu")
+                .WithProperty(p => p.Name = "Ionel")
+                .WithProperty(p => p.Address = "Str. 1 Zimbru 1928")
                 .WithProperty("phone", 123456)
                 .Build();
 
@@ -17,7 +17,6 @@ namespace Builder
             Console.WriteLine(ceva.LastName);
             Console.WriteLine(ceva.Address);
             Console.WriteLine(ceva.Phone);
-
         }
     }
 }

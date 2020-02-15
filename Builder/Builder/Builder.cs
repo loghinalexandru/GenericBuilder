@@ -17,6 +17,13 @@ namespace Builder
             return _classInstance;
         }
 
+        public IBuilder<T> WithProperty(Action<T> propertySetter)
+        {
+            propertySetter.Invoke(_classInstance);
+
+            return this;
+        }
+
         public IBuilder<T> WithProperty(string propertyName, object value)
         {
             var property = typeof(T).GetProperties().FirstOrDefault(prop =>
