@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ImmutableNet;
+using System;
 
 namespace Builder
 {
     public interface IBuilder<T>
     {
         T Build();
-        IBuilder<T> WithProperty(string propertyName, object value);
+        Immutable<T> BuildAsImmutable();
         IBuilder<T> WithProperty(Action<T> propertySetter);
     }
 }

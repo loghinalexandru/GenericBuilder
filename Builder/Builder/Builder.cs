@@ -1,5 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using ImmutableNet;
+using System;
 
 namespace Builder
 {
@@ -17,24 +17,14 @@ namespace Builder
             return _classInstance;
         }
 
+        public Immutable<T> BuildAsImmutable()
+        {
+            return Immutable.Create(_classInstance);
+        }
+
         public IBuilder<T> WithProperty(Action<T> propertySetter)
         {
             propertySetter.Invoke(_classInstance);
-
-            return this;
-        }
-
-        public IBuilder<T> WithProperty(string propertyName, object value)
-        {
-            var property = typeof(T).GetProperties().FirstOrDefault(prop =>
-                string.Equals(prop.Name, propertyName, StringComparison.InvariantCultureIgnoreCase));
-
-            if (property == null)
-            {
-                throw new ArgumentException("Object property could not be found!");
-            }
-
-            property.GetSetMethod(true).Invoke(_classInstance, new[] {value});
 
             return this;
         }

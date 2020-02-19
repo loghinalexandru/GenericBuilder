@@ -10,13 +10,12 @@ namespace Builder
                 .WithProperty(p => p.LastName = "Popescu")
                 .WithProperty(p => p.Name = "Ionel")
                 .WithProperty(p => p.Address = "Str. 1 Zimbru 1928")
-                .WithProperty("phone", 123456)
-                .Build();
+                .BuildAsImmutable();
 
-            Console.WriteLine(ceva.Name);
-            Console.WriteLine(ceva.LastName);
-            Console.WriteLine(ceva.Address);
-            Console.WriteLine(ceva.Phone);
+            Console.WriteLine(ceva.Get(p => p.LastName));
+            Console.WriteLine(ceva.Get(p => p.Name));
+            Console.WriteLine(ceva.Get(p => p.Address));
+            Console.WriteLine(ceva.Get(p => p.Phone));
         }
     }
 }
